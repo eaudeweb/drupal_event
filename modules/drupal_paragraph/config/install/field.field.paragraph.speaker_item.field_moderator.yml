@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_moderator
+    - paragraphs.paragraphs_type.speaker_item
+id: paragraph.speaker_item.field_moderator
+field_name: field_moderator
+entity_type: paragraph
+bundle: speaker_item
+label: 'Is moderator'
+description: 'Check if this speaker it''s also a moderator.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

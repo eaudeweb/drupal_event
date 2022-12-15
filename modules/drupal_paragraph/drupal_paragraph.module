@@ -1,0 +1,114 @@
+<?php
+
+/**
+ * @file
+ * Basic module file for drupal_paragraph module.
+ */
+
+use Drupal\Core\Template\Attribute;
+use Drupal\paragraphs\Entity\Paragraph;
+
+/**
+ * Implements hook_preprocess_HOOK() for field__paragraph__field_items__list_with_items.
+ */
+function drupal_paragraph_preprocess_field__paragraph__field_items__list_with_items(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $parent */
+  $parent = $variables['element']['#object'];
+  if (!$parent->hasField('field_columns') || $parent->get('field_columns')->isEmpty()) {
+    return;
+  }
+  $columns = $parent->get('field_columns')->value;
+  $classes = ['col-12'];
+  switch ($columns) {
+    case 6:
+      $classes = ['col-12', 'col-sm-12', 'col-md-6', 'col-lg-2'];
+      break;
+
+    case 4:
+      $classes = ['col-12', 'col-sm-12', 'col-md-6', 'col-lg-3'];
+      break;
+
+    case 3:
+      $classes = ['col-12', 'col-sm-12', 'col-md-6', 'col-lg-4'];
+      break;
+
+    case 2:
+      $classes = ['col-12', 'col-sm-12', 'col-md-6'];
+      break;
+  }
+  if ($variables['label_hidden']) {
+    if ($variables['multiple']) {
+      foreach ($variables['items'] as &$item) {
+        $item['attributes']->addClass($classes);
+      }
+    }
+  }
+  $variables['attributes'] = new Attribute();
+  $variables['attributes']->addClass(['row']);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function drupal_paragraph_preprocess_paragraph(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['elements']['#paragraph'];
+  $id = 'paragraph-id-' . $paragraph->id();
+  $variables['permalink'] = $id;
+  if ($variables['view_mode'] == 'default') {
+    $attributes = new Attribute();
+    $attributes->setAttribute('id', $id);
+    $variables['attributes'] = $attributes;
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function drupal_paragraph_preprocess_paragraph__html(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['elements']['#paragraph'];
+  $variables['back_to_top'] = !$paragraph->hasField('field_back_top')
+    || $paragraph->get('field_back_top')->isEmpty()
+    || $paragraph->get('field_back_top')->value;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function drupal_paragraph_preprocess_views_view(&$variables) {
+  /** @var \Drupal\views\ViewExecutable $view */
+  $view = $variables['view'];
+  if ($view->id() == 'paragraphs' && $view->current_display == 'event_schedule') {
+    // Find the current day.
+    $dates = array_column($view->result, 'paragraph__field_date_field_date_value');
+    // Set current day by default to 0 and return early if something went wrong.
+    if (empty($dates)) {
+      $variables['current_day_group'] = 0;
+      return;
+    }
+    $dates = array_unique($dates);
+    $dates = array_map(function ($date) {
+      return date('d Y', strtotime($date));
+    }, $dates);
+    $current_date = date('d Y', time());
+    $day_number_group = array_search($current_date, $dates);
+    $variables['current_day_group'] = is_int($day_number_group) ? $day_number_group : 0;
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function drupal_paragraph_paragraph_presave(Paragraph $entity) {
+  if ($entity->bundle() == 'schedule_item') {
+    if (!$entity->hasField('field_date') || !$entity->hasField('field_date_range')) {
+      return;
+    }
+    if (!empty($entity->field_date_range->value)) {
+      $date = $entity->field_date_range->value;
+      $date = date('Y-m-d', strtotime($date));
+      $entity->set('field_date', $date);
+    }
+  }
+}

@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_information
+    - paragraphs.paragraphs_type.image_with_description
+  module:
+    - text
+third_party_settings: { }
+id: paragraph.image_with_description.field_information
+field_name: field_information
+entity_type: paragraph
+bundle: image_with_description
+label: 'Additional Information'
+description: 'Text appears in a separate container.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

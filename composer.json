@@ -1,0 +1,42 @@
+{
+    "name": "drupal/drupal_event",
+    "type": "drupal-module",
+    "description": "Provides a Drupal Event content type with sub-pages to be reused in projects\n\n",
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@github.com:eaudeweb/drupal_event.git"
+        }
+    ],
+    "support": {
+        "source": "https://github.com/eaudeweb/drupal_event"
+    },
+    "authors": [
+        {
+            "name": "Daniela Eremia",
+            "email": "dani.eremia@yahoo.com"
+        }
+    ],
+    "require": {
+        "drupal/svg_image_field": "^2.1",
+        "drupal/svg_image": "^1.16",
+        "drupal/link_class": "^2.0",
+        "drupal/better_exposed_filters": "^6.0",
+        "drupal/paragraphs_browser": "^1.0",
+        "drupal/entity_browser": "^2.8",
+        "drupal/drupal_document": "dev-master"
+    },
+    "extra": {
+        "composer-exit-on-patch-failure": true,
+        "patches": {
+            "drupal/core": {
+                "#2457999 - Cannot use relationship for rendered entity on Views": "https://www.drupal.org/files/issues/2021-10-07/2457999-284.patch"
+            },
+            "drupal/entity_reference_revisions": {
+                "#2799479 - Views doesn't recognize relationship to host": "https://www.drupal.org/files/issues/2022-06-01/entity_reference_revisions-relationship_host_id-2799479-176.patch"
+            }
+        }
+    }
+}

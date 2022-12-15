@@ -1,0 +1,10 @@
+{%
+  set classes = [
+  'event-field--preview',
+]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {% block content %}
+    {{ items }}
+  {% endblock %}
+</div>

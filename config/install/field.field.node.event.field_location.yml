@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_location
+    - node.type.event
+id: node.event.field_location
+field_name: field_location
+entity_type: node
+bundle: event
+label: Location
+description: 'Event physical location, e.g. <em>International Conference Center, Dubai</em>. <b>Do not enter country, there is a separate field below</b>. Virtual events will not show this field.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

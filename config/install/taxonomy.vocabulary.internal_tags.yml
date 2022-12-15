@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Internal Tags'
+vid: internal_tags
+description: 'Allow content managers to group content. These are not translatable and does not appear in front-end'
+weight: 0

@@ -1,0 +1,376 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.topics
+    - field.field.node.event.field_countries
+    - field.field.node.event.field_date_range
+    - field.field.node.event.field_epis
+    - field.field.node.event.field_event_elements
+    - field.field.node.event.field_event_presence
+    - field.field.node.event.field_event_type
+    - field.field.node.event.field_event_virtual
+    - field.field.node.event.field_events
+    - field.field.node.event.field_featured_documents
+    - field.field.node.event.field_image
+    - field.field.node.event.field_link
+    - field.field.node.event.field_links
+    - field.field.node.event.field_location
+    - field.field.node.event.field_meeting_confirmation
+    - field.field.node.event.field_multimedia
+    - field.field.node.event.field_organisation
+    - field.field.node.event.field_topics
+    - node.type.event
+  module:
+    - datetime_range
+    - entity_browser
+    - field_group
+    - link
+    - media_library
+    - paragraphs_browser
+    - path
+    - text
+third_party_settings:
+  field_group:
+    group_tabs:
+      children:
+        - group_main
+        - group_details
+        - group_location
+        - group_tagg
+        - group_main_content
+        - group_menu_elements
+      label: Tabs
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        direction: horizontal
+        width_breakpoint: 640
+    group_main:
+      children:
+        - title
+        - field_event_type
+        - field_event_presence
+        - field_meeting_confirmation
+        - field_date_range
+        - field_time_zone
+      label: Main
+      region: content
+      parent_name: group_tabs
+      weight: 4
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        formatter: open
+        description: ''
+        required_fields: true
+    group_location:
+      children:
+        - field_location
+        - field_countries
+      label: Location
+      region: content
+      parent_name: group_tabs
+      weight: 6
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_tagg:
+      children:
+        - field_organisation
+        - field_epis
+        - field_topics
+        - field_projects
+      label: Tagging
+      region: content
+      parent_name: group_tabs
+      weight: 7
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_details:
+      children:
+        - field_featured_documents
+        - field_events
+        - field_link
+        - field_links
+        - field_image
+        - field_multimedia
+      label: Details
+      region: content
+      parent_name: group_tabs
+      weight: 5
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_menu_elements:
+      children:
+        - field_event_elements
+      label: 'Event Elements'
+      region: content
+      parent_name: group_tabs
+      weight: 10
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_main_content:
+      children:
+        - field_old_d7_body
+        - field_content
+      label: 'Main content'
+      region: content
+      parent_name: group_tabs
+      weight: 8
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+id: node.event.default
+targetEntityType: node
+bundle: event
+mode: default
+content:
+  field_content:
+    type: entity_reference_paragraphs_browser
+    weight: 29
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      add_mode: paragraphs_browser
+      form_display_mode: default
+      default_paragraph_type: _none
+      paragraphs_browser: content
+      modal_width: 80%
+      modal_height: auto
+    third_party_settings: {  }
+  field_countries:
+    type: entity_reference_autocomplete
+    weight: 15
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_date_range:
+    type: daterange_default
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_epis:
+    type: entity_browser_entity_reference
+    weight: 29
+    region: content
+    settings:
+      entity_browser: epis
+      field_widget_display: label
+      field_widget_edit: false
+      field_widget_remove: true
+      field_widget_replace: false
+      open: true
+      field_widget_display_settings: {  }
+      selection_mode: selection_edit
+    third_party_settings: {  }
+  field_event_elements:
+    type: entity_reference_paragraphs_browser
+    weight: 26
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      add_mode: paragraphs_browser
+      form_display_mode: default
+      default_paragraph_type: _none
+      paragraphs_browser: content
+      modal_width: 80%
+      modal_height: auto
+    third_party_settings: {  }
+  field_event_presence:
+    type: options_select
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_event_type:
+    type: options_select
+    weight: 3
+    region: content
+    settings: { }
+    third_party_settings: {  }
+  field_events:
+    type: entity_browser_entity_reference
+    weight: 9
+    region: content
+    settings:
+      entity_browser: documents_events
+      field_widget_display: label
+      field_widget_edit: false
+      field_widget_remove: true
+      field_widget_replace: false
+      open: true
+      field_widget_display_settings: {  }
+      selection_mode: selection_append
+    third_party_settings: {  }
+  field_featured_documents:
+    type: entity_browser_entity_reference
+    weight: 8
+    region: content
+    settings:
+      entity_browser: documents
+      field_widget_display: label
+      field_widget_edit: false
+      field_widget_remove: true
+      field_widget_replace: false
+      open: true
+      field_widget_display_settings: {  }
+      selection_mode: selection_append
+    third_party_settings: {  }
+  field_image:
+    type: media_library_widget
+    weight: 12
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_link:
+    type: link_default
+    weight: 10
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_links:
+    type: link_default
+    weight: 11
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_location:
+    type: string_textfield
+    weight: 13
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_meeting_confirmation:
+    type: options_select
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_multimedia:
+    type: media_library_widget
+    weight: 13
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_organisation:
+    type: entity_reference_autocomplete
+    weight: 28
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_topics:
+    type: entity_browser_entity_reference
+    weight: 30
+    region: content
+    settings:
+      entity_browser: topics
+      field_widget_display: label
+      field_widget_edit: false
+      field_widget_remove: true
+      field_widget_replace: false
+      open: true
+      field_widget_display_settings: {  }
+      selection_mode: selection_edit
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_event_virtual: true
+  langcode: true
+  uid: true

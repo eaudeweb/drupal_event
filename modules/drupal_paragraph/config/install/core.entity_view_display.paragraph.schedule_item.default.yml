@@ -1,0 +1,55 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.schedule_item.field_date
+    - field.field.paragraph.schedule_item.field_date_range
+    - field.field.paragraph.schedule_item.field_description
+    - field.field.paragraph.schedule_item.field_location
+    - field.field.paragraph.schedule_item.field_title
+    - paragraphs.paragraphs_type.schedule_item
+  module:
+    - datetime_range
+    - text
+id: paragraph.schedule_item.default
+targetEntityType: paragraph
+bundle: schedule_item
+mode: default
+content:
+  field_date_range:
+    type: daterange_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: schedule_date
+      fromto: both
+      separator: '-'
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_location:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  field_date: true
+  search_api_excerpt: true

@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+name: Organisations
+vid: organisations
+description: 'A list of organisations that can be attached to content'
+weight: 0

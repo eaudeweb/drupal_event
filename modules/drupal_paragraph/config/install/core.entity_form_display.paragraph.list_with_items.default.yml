@@ -1,0 +1,38 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.list_with_items.field_columns
+    - field.field.paragraph.list_with_items.field_items
+    - paragraphs.paragraphs_type.list_with_items
+  module:
+    - paragraphs_browser
+id: paragraph.list_with_items.default
+targetEntityType: paragraph
+bundle: list_with_items
+mode: default
+content:
+  field_columns:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_items:
+    type: entity_reference_paragraphs_browser
+    weight: 1
+    region: content
+    settings:
+      title: Item
+      title_plural: Items
+      edit_mode: closed
+      add_mode: paragraphs_browser
+      form_display_mode: default
+      default_paragraph_type: _none
+      paragraphs_browser: content
+      modal_width: 80%
+      modal_height: auto
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

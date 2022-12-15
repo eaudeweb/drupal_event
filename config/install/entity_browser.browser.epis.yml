@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.epis
+  module:
+    - views
+name: epis
+label: EPIs
+display: modal
+display_configuration:
+  width: ''
+  height: ''
+  link_text: 'Select EPIs'
+  auto_open: false
+selection_display: multi_step_display
+selection_display_configuration:
+  entity_type: node
+  display: label
+  display_settings: {  }
+  select_text: 'Use selected'
+  selection_hidden: false
+widget_selector: single
+widget_selector_configuration: {  }
+widgets:
+  c1d9def8-86c5-49bc-998d-f71eecb16667:
+    id: view
+    uuid: c1d9def8-86c5-49bc-998d-f71eecb16667
+    label: view
+    weight: 1
+    settings:
+      submit_text: 'Choose EPIs'
+      auto_select: false
+      view: epis
+      view_display: entity_browser_epis

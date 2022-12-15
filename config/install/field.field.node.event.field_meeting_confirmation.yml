@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_meeting_confirmation
+    - node.type.event
+  module:
+    - options
+id: node.event.field_meeting_confirmation
+field_name: field_meeting_confirmation
+entity_type: node
+bundle: event
+label: 'Meeting confirmation'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: confirmed
+default_value_callback: ''
+settings: {  }
+field_type: list_string

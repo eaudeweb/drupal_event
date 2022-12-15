@@ -1,0 +1,56 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_view
+    - paragraphs.paragraphs_type.view
+  module:
+    - viewsreference
+id: paragraph.view.field_view
+field_name: field_view
+entity_type: paragraph
+bundle: view
+label: View
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:view'
+  handler_settings:
+    target_bundles: null
+    auto_create: 0
+  plugin_types:
+    block: block
+    default: 0
+    autocompletion_callback: 0
+    page: 0
+    entity_browser: 0
+    embed: 0
+  preselect_views:
+    articles: 0
+    autocompletion_callbacks_nodes: 0
+    block_content: 0
+    broken_links_report: 0
+    communities_of_practice: 0
+    content: 0
+    content_browser: 0
+    countries: 0
+    epis: 0
+    events: 0
+    experts_to_approve: 0
+    files: 0
+    manage_terms: 0
+    media: 0
+    media_library: 0
+    node_project: 0
+    paragraphs: 0
+    people: 0
+    projects: 0
+    redirect: 0
+    topics: 0
+    user_admin_people: 0
+    watchdog: 0
+    webform_submissions: 0
+field_type: viewsreference

@@ -1,0 +1,63 @@
+<?php
+
+/**
+ * @file
+ * Basic module file for drupal_event module.
+ */
+
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Render\Element;
+
+/**
+ * Implements hook_theme().
+ */
+function drupal_event_theme($existing, $type, $theme, $path) {
+  return [
+    'event_elements_paragraph__preview' => [
+      'variables' => ['items' => []],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function drupal_event_views_data_alter(array &$data) {
+  $data['node__field_date_range']['closest_events'] = [
+    'title' => t('Closest to the present date'),
+    'group' => t('Content'),
+    'help' => t('Display content closest to the present date otherwise display past content.'),
+    'real field' => 'field_date_range',
+    'sort' => [
+      'field' => 'field_date_range_value',
+      'id' => 'closest_events',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for field__node__field_event_elements.
+ */
+function drupal_event_preprocess_field__node__field_event_elements(&$variables) {
+  /** @var \Drupal\drupal_event\Services\EventBaseUtils $eventUtils */
+  $eventUtils = \Drupal::service('event.utils');
+  /** @var \Drupal\node\Entity\Node $node */
+  $node = $variables['element']['#object'];
+  if ($node->isNew()) {
+    return;
+  }
+  foreach (Element::children($variables['element']) as $delta) {
+    $item = $variables['element'][$delta];
+    if ($item['#view_mode'] == 'default' && $item['#paragraph']->bundle() == 'schedule') {
+      /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+      $paragraph = $item['#paragraph'];
+      // If paragraph has option to hide, check if is checked.
+      if ($paragraph->hasField('field_hide_content')
+        && !$paragraph->get('field_hide_content')->value) {
+        $variables['items'][$delta] = [
+          'content' => $eventUtils->renderView('paragraphs', 'event_schedule', [$node->id()]),
+        ];
+      }
+    }
+  }
+}

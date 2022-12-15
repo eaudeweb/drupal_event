@@ -1,0 +1,37 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.icons.field_media_svg
+    - media.type.icons
+  module:
+    - svg_image_field
+id: media.icons.default
+targetEntityType: media
+bundle: icons
+mode: default
+content:
+  field_media_svg:
+    type: svg_image_field_formatter
+    label: visually_hidden
+    settings:
+      inline: true
+      apply_dimensions: false
+      width: 50
+      height: 50
+      enable_alt: true
+      enable_title: true
+      link: ''
+      force_fill: true
+      sanitize: '1'
+      sanitize_remote: 0
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  langcode: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

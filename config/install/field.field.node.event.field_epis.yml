@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_epis
+    - node.type.event
+    - taxonomy.vocabulary.emerging_policy_issues
+id: node.event.field_epis
+field_name: field_epis
+entity_type: node
+bundle: event
+label: 'Emerging Policy Issues'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      emerging_policy_issues: emerging_policy_issues
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_information
+    - paragraphs.paragraphs_type.speaker_item
+  module:
+    - text
+third_party_settings: { }
+id: paragraph.speaker_item.field_information
+field_name: field_information
+entity_type: paragraph
+bundle: speaker_item
+label: Information
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

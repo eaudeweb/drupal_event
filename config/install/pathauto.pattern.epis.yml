@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - language
+    - taxonomy
+id: epis
+label: EPIs
+type: 'canonical_entities:taxonomy_term'
+pattern: '/epi/[term:name]'
+selection_criteria:
+  98bd34e8-ef13-4974-9c2d-a4d75079aed2:
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    uuid: 98bd34e8-ef13-4974-9c2d-a4d75079aed2
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    bundles:
+      emerging_policy_issues: emerging_policy_issues
+  6381fa80-acab-4aa9-a554-acf2beaef43c:
+    id: language
+    negate: false
+    uuid: 6381fa80-acab-4aa9-a554-acf2beaef43c
+    context_mapping:
+      language: 'taxonomy_term:langcode:language'
+    langcodes:
+      en: en
+selection_logic: and
+weight: -10
+relationships:
+  'taxonomy_term:langcode:language':
+    label: Language

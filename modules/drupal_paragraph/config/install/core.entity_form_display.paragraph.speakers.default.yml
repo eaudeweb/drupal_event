@@ -1,0 +1,48 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.speakers.field_hide_content
+    - field.field.paragraph.speakers.field_items
+    - field.field.paragraph.speakers.field_title
+    - paragraphs.paragraphs_type.speakers
+  module:
+    - paragraphs_browser
+id: paragraph.speakers.default
+targetEntityType: paragraph
+bundle: speakers
+mode: default
+content:
+  field_hide_content:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_items:
+    type: entity_reference_paragraphs_browser
+    weight: 3
+    region: content
+    settings:
+      title: Speaker
+      title_plural: Speakers
+      edit_mode: closed
+      add_mode: paragraphs_browser
+      form_display_mode: default
+      default_paragraph_type: _none
+      paragraphs_browser: content
+      modal_width: 80%
+      modal_height: auto
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

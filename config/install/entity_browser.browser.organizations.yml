@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.organizations
+  module:
+    - views
+name: organizations
+label: Organizations
+display: modal
+display_configuration:
+  width: ''
+  height: ''
+  link_text: 'Select organization'
+  auto_open: false
+selection_display: multi_step_display
+selection_display_configuration:
+  entity_type: node
+  display: label
+  display_settings: {  }
+  select_text: 'Use selected'
+  selection_hidden: false
+widget_selector: single
+widget_selector_configuration: {  }
+widgets:
+  e95e98ba-74ef-4e41-88a8-f3990c318a28:
+    id: view
+    uuid: e95e98ba-74ef-4e41-88a8-f3990c318a28
+    label: view
+    weight: 1
+    settings:
+      submit_text: 'Select entities'
+      auto_select: false
+      view: organizations
+      view_display: entity_browser_organizations

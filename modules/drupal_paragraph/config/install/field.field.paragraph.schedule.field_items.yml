@@ -1,0 +1,66 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_items
+    - paragraphs.paragraphs_type.schedule
+    - paragraphs.paragraphs_type.schedule_item
+  module:
+    - entity_reference_revisions
+id: paragraph.schedule.field_items
+field_name: field_items
+entity_type: paragraph
+bundle: schedule
+label: Items
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      schedule_item: schedule_item
+    negate: 0
+    target_bundles_drag_drop:
+      heading:
+        weight: 15
+        enabled: false
+      highlights:
+        weight: 16
+        enabled: false
+      html:
+        weight: 17
+        enabled: false
+      image_with_description:
+        weight: 18
+        enabled: false
+      item:
+        weight: 19
+        enabled: false
+      list_with_items:
+        weight: 20
+        enabled: false
+      menu_element:
+        weight: 21
+        enabled: false
+      schedule:
+        weight: 14
+        enabled: false
+      schedule_item:
+        weight: 22
+        enabled: true
+      speaker_item:
+        weight: 23
+        enabled: false
+      speakers:
+        weight: 24
+        enabled: false
+      view:
+        weight: 25
+        enabled: false
+      wheel_item:
+        weight: 26
+        enabled: false
+field_type: entity_reference_revisions

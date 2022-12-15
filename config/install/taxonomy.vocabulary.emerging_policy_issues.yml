@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Emerging Policy Issues'
+vid: emerging_policy_issues
+description: 'We call for appropriate action on EPI as they arise and to forge consensus on priorities for cooperative action'
+weight: 0

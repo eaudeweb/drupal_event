@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: edit_node_thumbnail
+label: 'Edit node thumbnail (60 x 60)'
+effects:
+  8a05242f-cb1a-4b7d-8c2e-2a45dd1593d0:
+    uuid: 8a05242f-cb1a-4b7d-8c2e-2a45dd1593d0
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 60
+      height: 60
+      anchor: center-center

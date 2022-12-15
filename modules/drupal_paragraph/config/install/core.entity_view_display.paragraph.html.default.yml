@@ -1,0 +1,41 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.html.field_back_top
+    - field.field.paragraph.html.field_body
+    - field.field.paragraph.html.field_classes
+    - paragraphs.paragraphs_type.html
+  module:
+    - text
+id: paragraph.html.default
+targetEntityType: paragraph
+bundle: html
+mode: default
+content:
+  field_back_top:
+    type: boolean
+    label: hidden
+    settings:
+      format: boolean
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_classes:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  search_api_excerpt: true

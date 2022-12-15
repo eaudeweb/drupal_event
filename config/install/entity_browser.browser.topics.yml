@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.topics
+  module:
+    - views
+name: topics
+label: Topics
+display: modal
+display_configuration:
+  width: ''
+  height: ''
+  link_text: 'Choose topics'
+  auto_open: false
+selection_display: multi_step_display
+selection_display_configuration:
+  entity_type: node
+  display: label
+  display_settings: {  }
+  select_text: 'Use selected'
+  selection_hidden: false
+widget_selector: single
+widget_selector_configuration: {  }
+widgets:
+  3d67ec44-4938-4203-bf49-035d2caaf7c5:
+    id: view
+    uuid: 3d67ec44-4938-4203-bf49-035d2caaf7c5
+    label: view
+    weight: 1
+    settings:
+      submit_text: 'Choose topics'
+      auto_select: false
+      view: topics
+      view_display: entity_browser_topics

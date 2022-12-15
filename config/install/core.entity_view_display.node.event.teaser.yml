@@ -1,0 +1,116 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.event.field_content
+    - field.field.node.event.field_countries
+    - field.field.node.event.field_date_range
+    - field.field.node.event.field_epis
+    - field.field.node.event.field_event_elements
+    - field.field.node.event.field_event_presence
+    - field.field.node.event.field_event_type
+    - field.field.node.event.field_event_virtual
+    - field.field.node.event.field_events
+    - field.field.node.event.field_featured_documents
+    - field.field.node.event.field_image
+    - field.field.node.event.field_link
+    - field.field.node.event.field_links
+    - field.field.node.event.field_location
+    - field.field.node.event.field_meeting_confirmation
+    - field.field.node.event.field_multimedia
+    - field.field.node.event.field_organisation
+    - field.field.node.event.field_topics
+    - node.type.event
+  module:
+    - media
+    - options
+    - drupal_event
+    - user
+id: node.event.teaser
+targetEntityType: node
+bundle: event
+mode: teaser
+content:
+  field_countries:
+    type: entity_reference_entity_view
+    label: inline
+    settings:
+      view_mode: link
+      link: false
+    third_party_settings: { }
+    weight: 7
+    region: content
+  field_date_range:
+    type: flexible_daterange_interval
+    label: hidden
+    settings:
+      timezone_override: ''
+      date_format: 'd M Y'
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_epis:
+    type: entity_reference_entity_view
+    label: inline
+    settings:
+      view_mode: link
+      link: false
+    third_party_settings: { }
+    weight: 5
+    region: content
+  field_event_type:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_image:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_meeting_confirmation:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_organisation:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: { }
+    weight: 4
+    region: content
+  field_topics:
+    type: entity_reference_entity_view
+    label: inline
+    settings:
+      view_mode: link
+      link: false
+    third_party_settings: { }
+    weight: 6
+    region: content
+hidden:
+  field_content: true
+  field_event_elements: true
+  field_event_presence: true
+  field_event_virtual: true
+  field_events: true
+  field_featured_documents: true
+  field_link: true
+  field_links: true
+  field_location: true
+  field_multimedia: true
+  langcode: true
+  links: true

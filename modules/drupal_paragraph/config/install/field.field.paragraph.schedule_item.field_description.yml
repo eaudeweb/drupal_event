@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_description
+    - paragraphs.paragraphs_type.schedule_item
+  module:
+    - text
+third_party_settings: { }
+id: paragraph.schedule_item.field_description
+field_name: field_description
+entity_type: paragraph
+bundle: schedule_item
+label: Description
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

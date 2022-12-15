@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.link
+    - field.field.paragraph.speakers.field_hide_content
+    - field.field.paragraph.speakers.field_items
+    - field.field.paragraph.speakers.field_title
+    - paragraphs.paragraphs_type.speakers
+third_party_settings: { }
+id: paragraph.speakers.link
+targetEntityType: paragraph
+bundle: speakers
+mode: link
+content:
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_hide_content: true
+  field_items: true
+  search_api_excerpt: true

@@ -1,0 +1,57 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_items
+    - paragraphs.paragraphs_type.speaker_item
+    - paragraphs.paragraphs_type.speakers
+  module:
+    - entity_reference_revisions
+id: paragraph.speakers.field_items
+field_name: field_items
+entity_type: paragraph
+bundle: speakers
+label: Items
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      speaker_item: speaker_item
+    negate: 0
+    target_bundles_drag_drop:
+      heading:
+        weight: 12
+        enabled: false
+      highlights:
+        weight: 13
+        enabled: false
+      html:
+        weight: 14
+        enabled: false
+      image_with_description:
+        weight: 15
+        enabled: false
+      item:
+        weight: 16
+        enabled: false
+      list_with_items:
+        weight: 17
+        enabled: false
+      schedule_item:
+        weight: 18
+        enabled: false
+      speaker_item:
+        weight: 19
+        enabled: true
+      speakers:
+        weight: 11
+        enabled: false
+      wheel_item:
+        weight: 20
+        enabled: false
+field_type: entity_reference_revisions

@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_date_range
+    - paragraphs.paragraphs_type.schedule_item
+  module:
+    - datetime_range
+id: paragraph.schedule_item.field_date_range
+field_name: field_date_range
+entity_type: paragraph
+bundle: schedule_item
+label: 'Date range'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: daterange

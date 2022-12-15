@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.link
+    - field.field.taxonomy_term.countries.field_flag
+    - field.field.taxonomy_term.countries.field_iso_2
+    - field.field.taxonomy_term.countries.field_iso_3
+    - taxonomy.vocabulary.countries
+third_party_settings: { }
+id: taxonomy_term.countries.link
+targetEntityType: taxonomy_term
+bundle: countries
+mode: link
+content: {  }
+hidden:
+  description: true
+  field_flag: true
+  field_iso_2: true
+  field_iso_3: true
+  langcode: true

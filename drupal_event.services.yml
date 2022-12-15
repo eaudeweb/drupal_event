@@ -1,0 +1,4 @@
+services:
+  event.utils:
+    class: 'Drupal\drupal_event\Services\EventBaseUtils'
+    arguments: ['@entity_type.manager', '@entity.repository']

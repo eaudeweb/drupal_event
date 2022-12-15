@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_columns
+    - paragraphs.paragraphs_type.list_with_items
+  module:
+    - options
+id: paragraph.list_with_items.field_columns
+field_name: field_columns
+entity_type: paragraph
+bundle: list_with_items
+label: 'Number of columns'
+description: 'The number of columns per row.'
+required: true
+translatable: false
+default_value:
+  -
+    value: '1'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

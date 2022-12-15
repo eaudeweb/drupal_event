@@ -1,0 +1,47 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_event_type
+field_name: field_event_type
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: conference
+      label: Conference
+    -
+      value: webinar
+      label: Webinar
+    -
+      value: online
+      label: 'Online discussion'
+    -
+      value: community
+      label: 'Community of practice'
+    -
+      value: workshop
+      label: Workshop
+    -
+      value: forum
+      label: Forum
+    -
+      value: course
+      label: Course
+    -
+      value: other
+      label: Other
+    -
+      value: cop
+      label: 'Conference of the Parties'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

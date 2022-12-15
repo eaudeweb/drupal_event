@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: block_content
+label: 'Block content'
+icon_uuid: null
+icon_default: null
+description: 'Use block content to add an existing block to a page'
+behavior_plugins: {  }

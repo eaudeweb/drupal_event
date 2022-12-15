@@ -1,0 +1,47 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.speaker_item.field_information
+    - field.field.paragraph.speaker_item.field_link
+    - field.field.paragraph.speaker_item.field_moderator
+    - paragraphs.paragraphs_type.speaker_item
+  module:
+    - link
+    - text
+id: paragraph.speaker_item.default
+targetEntityType: paragraph
+bundle: speaker_item
+mode: default
+content:
+  field_information:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: nofollow
+      target: _blank
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_moderator:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  search_api_excerpt: true

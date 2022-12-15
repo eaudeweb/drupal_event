@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hide_content
+    - paragraphs.paragraphs_type.page_html
+id: paragraph.page_html.field_hide_content
+field_name: field_hide_content
+entity_type: paragraph
+bundle: page_html
+label: 'Hide this tab in public event page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

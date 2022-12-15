@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_library
+    - field.field.media.icons.field_media_svg
+    - media.type.icons
+id: media.icons.media_library
+targetEntityType: media
+bundle: icons
+mode: media_library
+content: {  }
+hidden:
+  created: true
+  field_media_svg: true
+  langcode: true
+  name: true
+  path: true
+  status: true
+  uid: true
