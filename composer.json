@@ -26,7 +26,7 @@
         "drupal/better_exposed_filters": "^6.0",
         "drupal/paragraphs_browser": "^1.0",
         "drupal/entity_browser": "^2.8",
-        "drupal/drupal_document": "dev-master"
+        "drupal/drupal_document": "dev-main"
     },
     "extra": {
         "composer-exit-on-patch-failure": true,
