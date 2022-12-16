@@ -24,12 +24,12 @@ dependencies:
     - views.view.events
   module:
     - datetime_range
+    - drupal_event
     - entity_reference_revisions
     - layout_builder
     - layout_builder_restrictions
     - link
     - options
-    - drupal_event
     - user
     - views
 third_party_settings:
@@ -38,7 +38,7 @@ third_party_settings:
     allow_custom: false
     sections:
       -
-        layout_id: 'bootstrap_layout_builder:blb_col_3'
+        layout_id: 'bootstrap_layout_builder:blb_col_2'
         layout_settings:
           label: ''
           context_mapping: {  }
@@ -135,127 +135,37 @@ third_party_settings:
           regions_classes:
             blb_region_col_1: ''
             blb_region_col_2: ''
-            blb_region_col_3: ''
           regions_attributes:
             blb_region_col_1: null
             blb_region_col_2: null
-            blb_region_col_3: null
           breakpoints:
-            desktop: blb_col_6_2_4
-            tablet: ''
-            mobile: ''
+            desktop: blb_col_6_6
+            tablet: blb_col_12
+            mobile: blb_col_12
           layout_regions_classes:
             blb_region_col_1:
               - col-lg-6
               - col-md-12
               - col-12
             blb_region_col_2:
-              - col-lg-2
-              - col-md-12
-              - col-12
-            blb_region_col_3:
-              - col-lg-4
+              - col-lg-6
               - col-md-12
               - col-12
           remove_gutters: '0'
         components:
-          89a8c4b0-2b52-4c45-a6b8-76fca7ed715d:
-            uuid: 89a8c4b0-2b52-4c45-a6b8-76fca7ed715d
-            region: blb_region_col_3
-            configuration:
-              id: 'field_block:node:event:field_epis'
-              label: 'Related EPIs'
-              label_display: visible
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: entity_reference_entity_view
-                label: hidden
-                settings:
-                  view_mode: button
-                third_party_settings:
-                  field_delimiter:
-                    delimiter: ''
-            weight: 11
-            additional:
-              component_attributes:
-                block_attributes:
-                  id: ''
-                  class: mt-9
-                  style: ''
-                  data: ''
-                block_title_attributes:
-                  id: ''
-                  class: mb-4
-                  style: ''
-                  data: ''
-                block_content_attributes:
-                  id: ''
-                  class: ''
-                  style: ''
-                  data: ''
-          3a06fca6-8473-40a4-a42f-47b7c7ff56ed:
-            uuid: 3a06fca6-8473-40a4-a42f-47b7c7ff56ed
-            region: blb_region_col_3
-            configuration:
-              id: 'field_block:node:event:field_topics'
-              label: 'Related Topics'
-              label_display: visible
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: entity_reference_entity_view
-                label: hidden
-                settings:
-                  view_mode: title
-                third_party_settings:
-                  field_delimiter:
-                    delimiter: ''
-            weight: 12
-            additional:
-              component_attributes:
-                block_attributes:
-                  id: ''
-                  class: mt-9
-                  style: ''
-                  data: ''
-                block_title_attributes:
-                  id: ''
-                  class: mb-4
-                  style: ''
-                  data: ''
-                block_content_attributes:
-                  id: ''
-                  class: ''
-                  style: ''
-                  data: ''
-          034cb225-8db6-4065-a5ce-347d265a3261:
-            uuid: 034cb225-8db6-4065-a5ce-347d265a3261
+          5d39c948-88e9-462b-8aa9-326fe8ad6174:
+            uuid: 5d39c948-88e9-462b-8aa9-326fe8ad6174
             region: blb_region_col_1
             configuration:
-              id: 'field_block:node:event:field_content'
-              label: Content
+              id: event_sub_pages
+              label: 'Event Menu'
               label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: entity_reference_revisions_entity_view
-                label: hidden
-                settings:
-                  view_mode: default
-                third_party_settings:
-                  field_delimiter:
-                    delimiter: ''
-            weight: 5
+              provider: drupal_event
+              context_mapping: {  }
+            weight: 0
             additional: {  }
-          29d09d34-801e-44b0-8e26-51842cef873d:
-            uuid: 29d09d34-801e-44b0-8e26-51842cef873d
+          4652c921-68ef-4b84-8e7b-9faf9cfb4202:
+            uuid: 4652c921-68ef-4b84-8e7b-9faf9cfb4202
             region: blb_region_col_1
             configuration:
               id: 'field_block:node:event:field_event_elements'
@@ -270,33 +180,28 @@ third_party_settings:
                 label: hidden
                 settings:
                   view_mode: default
-                third_party_settings:
-                  field_delimiter:
-                    delimiter: ''
-            weight: 7
-            additional:
-              component_attributes:
-                block_attributes:
-                  id: ''
-                  class: ''
-                  style: ''
-                  data: ''
-                block_title_attributes:
-                  id: ''
-                  class: ''
-                  style: ''
-                  data: ''
-                block_content_attributes:
-                  id: ''
-                  class: ''
-                  style: ''
-                  data: ''
-          ab2ad30f-6d36-40b8-be6e-b17ba6956016:
-            uuid: ab2ad30f-6d36-40b8-be6e-b17ba6956016
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          1a86b62d-2c02-4925-b921-b67ce02747b0:
+            uuid: 1a86b62d-2c02-4925-b921-b67ce02747b0
+            region: blb_region_col_1
+            configuration:
+              id: 'views_block:events-event_documents'
+              label: Documents
+              label_display: visible
+              provider: views
+              context_mapping: {  }
+              views_label: Documents
+              items_per_page: none
+            weight: 2
+            additional: {  }
+          8bf1844d-30a7-42bf-8f56-369b28c20080:
+            uuid: 8bf1844d-30a7-42bf-8f56-369b28c20080
             region: blb_region_col_1
             configuration:
               id: 'field_block:node:event:field_multimedia'
-              label: Gallery
+              label: Multimedia
               label_display: visible
               provider: layout_builder
               context_mapping:
@@ -306,62 +211,36 @@ third_party_settings:
                 type: entity_reference_entity_view
                 label: hidden
                 settings:
-                  view_mode: colorbox
-                third_party_settings:
-                  field_delimiter:
-                    delimiter: ''
-            weight: 9
-            additional:
-              component_attributes:
-                block_attributes:
-                  id: ''
-                  class: ''
-                  style: ''
-                  data: ''
-                block_title_attributes:
-                  id: ''
-                  class: ''
-                  style: ''
-                  data: ''
-                block_content_attributes:
-                  id: ''
-                  class: ''
-                  style: ''
-                  data: ''
-          52d358cf-470c-4fd6-a30c-e0f86d1ad356:
-            uuid: 52d358cf-470c-4fd6-a30c-e0f86d1ad356
-            region: blb_region_col_1
+                  view_mode: default
+                third_party_settings: {  }
+            weight: 3
+            additional: {  }
+          485a36d4-1900-49a8-8836-5eaddde04b7c:
+            uuid: 485a36d4-1900-49a8-8836-5eaddde04b7c
+            region: blb_region_col_2
             configuration:
-              id: event_sub_pages
-              label: 'Event Menu'
-              label_display: '0'
-              provider: drupal_event
-              context_mapping: {  }
-            weight: 6
-            additional:
-              component_attributes:
-                block_attributes:
-                  id: ''
-                  class: mt-9
-                  style: ''
-                  data: ''
-                block_title_attributes:
-                  id: ''
-                  class: ''
-                  style: ''
-                  data: ''
-                block_content_attributes:
-                  id: ''
-                  class: ''
-                  style: ''
-                  data: ''
-          43e04215-e664-4359-919f-a1419bb014ce:
-            uuid: 43e04215-e664-4359-919f-a1419bb014ce
-            region: blb_region_col_3
+              id: 'field_block:node:event:field_topics'
+              label: Topics
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_entity_view
+                label: hidden
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          f41f9236-0f00-42c2-b538-796d4f55a901:
+            uuid: f41f9236-0f00-42c2-b538-796d4f55a901
+            region: blb_region_col_2
             configuration:
               id: 'field_block:node:event:field_events'
               label: 'Related events'
-              label_display: visible
+              label_display: '0'
               provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
@@ -370,63 +249,15 @@ third_party_settings:
                 type: limit_entity_reference_entity_view
                 label: hidden
                 settings:
-                  view_mode: related
+                  view_mode: default
                   limit_number: '4'
                   use_link: 1
                   use_more_link: /events
                   override_url_title: 1
                   more_link_text: 'see more events'
-                third_party_settings:
-                  field_delimiter:
-                    delimiter: ''
-            weight: 14
-            additional:
-              component_attributes:
-                block_attributes:
-                  id: ''
-                  class: mt-9
-                  style: ''
-                  data: ''
-                block_title_attributes:
-                  id: ''
-                  class: mb-4
-                  style: ''
-                  data: ''
-                block_content_attributes:
-                  id: ''
-                  class: ''
-                  style: ''
-                  data: ''
-          0792367b-aa0e-4c4d-a641-92682462dc08:
-            uuid: 0792367b-aa0e-4c4d-a641-92682462dc08
-            region: blb_region_col_1
-            configuration:
-              id: 'views_block:events-event_documents'
-              label: Documents
-              label_display: visible
-              provider: views
-              context_mapping:
-                field_events_target_id: layout_builder.entity
-              views_label: Documents
-              items_per_page: none
-            weight: 8
-            additional:
-              component_attributes:
-                block_attributes:
-                  id: ''
-                  class: mt-9
-                  style: ''
-                  data: ''
-                block_title_attributes:
-                  id: ''
-                  class: ''
-                  style: ''
-                  data: ''
-                block_content_attributes:
-                  id: ''
-                  class: ''
-                  style: ''
-                  data: ''
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
         third_party_settings: {  }
   layout_builder_restrictions:
     allowed_block_categories: {  }
@@ -468,7 +299,6 @@ content:
     settings:
       timezone_override: ''
       format_type: medium
-      fromto: both
       separator: '-'
     third_party_settings: {  }
     weight: 2

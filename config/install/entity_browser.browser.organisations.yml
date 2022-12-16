@@ -2,16 +2,16 @@ langcode: en
 status: true
 dependencies:
   config:
-    - views.view.organizations
+    - views.view.organisations
   module:
     - views
-name: organizations
-label: Organizations
+name: organisations
+label: Organisations
 display: modal
 display_configuration:
   width: ''
   height: ''
-  link_text: 'Select organization'
+  link_text: 'Select organisation'
   auto_open: false
 selection_display: multi_step_display
 selection_display_configuration:
@@ -31,5 +31,5 @@ widgets:
     settings:
       submit_text: 'Select entities'
       auto_select: false
-      view: organizations
-      view_display: entity_browser_organizations
+      view: organisations
+      view_display: entity_browser_organisations

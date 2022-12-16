@@ -10,7 +10,7 @@ field_name: field_organisation
 entity_type: node
 bundle: event
 label: Organiser
-description: 'The organization who submitted the event.'
+description: 'The organisation who submitted the event.'
 required: false
 translatable: false
 default_value: {  }

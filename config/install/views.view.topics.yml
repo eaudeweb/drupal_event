@@ -537,46 +537,6 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.taxonomy_term.field_image'
-  epi_related_topics:
-    id: epi_related_topics
-    display_title: 'EPI Related topics'
-    display_plugin: block
-    position: 1
-    display_options:
-      pager:
-        type: none
-        options:
-          offset: 0
-      sorts:
-        weight:
-          id: weight
-          table: taxonomy_term_field_data
-          field: weight
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: taxonomy_term
-          entity_field: weight
-          plugin_id: standard
-          order: ASC
-          expose:
-            label: ''
-            field_identifier: ''
-          exposed: false
-      defaults:
-        pager: false
-        sorts: false
-      display_description: ''
-      display_extenders: {  }
-      block_hide_empty: true
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - user.permissions
-      tags: {  }
   topics:
     id: topics
     display_title: 'All Topics'

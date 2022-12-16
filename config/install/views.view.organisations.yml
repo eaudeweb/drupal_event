@@ -9,8 +9,8 @@ dependencies:
     - media
     - taxonomy
     - user
-id: organizations
-label: Organizations
+id: organisations
+label: Organisations
 module: views
 description: ''
 tag: ''
@@ -272,7 +272,7 @@ display:
           exposed: true
           expose:
             operator_id: name_op
-            label: 'Organization''s name'
+            label: 'Organisation''s name'
             description: ''
             use_operator: false
             operator: name_op
@@ -370,8 +370,8 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.taxonomy_term.field_image'
-  entity_browser_organizations:
-    id: entity_browser_organizations
+  entity_browser_organisations:
+    id: entity_browser_organisations
     display_title: 'Entity browser'
     display_plugin: entity_browser
     position: 1
