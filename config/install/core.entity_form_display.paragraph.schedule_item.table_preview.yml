@@ -1,0 +1,45 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.paragraph.table_preview
+    - field.field.paragraph.schedule_item.field_date
+    - field.field.paragraph.schedule_item.field_date_range
+    - field.field.paragraph.schedule_item.field_description
+    - field.field.paragraph.schedule_item.field_location
+    - field.field.paragraph.schedule_item.field_title
+    - paragraphs.paragraphs_type.schedule_item
+  module:
+    - datetime_range
+id: paragraph.schedule_item.table_preview
+targetEntityType: paragraph
+bundle: schedule_item
+mode: table_preview
+content:
+  field_date_range:
+    type: daterange_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_location:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_date: true
+  field_description: true
+  status: true

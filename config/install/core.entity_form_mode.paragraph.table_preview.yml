@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.table_preview
+label: 'Table Preview'
+targetEntityType: paragraph
+cache: true
