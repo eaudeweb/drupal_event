@@ -5,11 +5,13 @@ dependencies:
     - field.field.paragraph.schedule_item.field_date
     - field.field.paragraph.schedule_item.field_date_range
     - field.field.paragraph.schedule_item.field_description
+    - field.field.paragraph.schedule_item.field_event_type
     - field.field.paragraph.schedule_item.field_location
     - field.field.paragraph.schedule_item.field_title
     - paragraphs.paragraphs_type.schedule_item
   module:
     - datetime_range
+    - options
     - text
 id: paragraph.schedule_item.default
 targetEntityType: paragraph
@@ -22,8 +24,8 @@ content:
     settings:
       timezone_override: ''
       format_type: schedule_date
-      fromto: both
       separator: '-'
+      fromto: both
     third_party_settings: {  }
     weight: 0
     region: content
@@ -33,6 +35,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_event_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
     region: content
   field_location:
     type: string

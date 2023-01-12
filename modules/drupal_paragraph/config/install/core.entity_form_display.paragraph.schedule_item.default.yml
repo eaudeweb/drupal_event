@@ -5,6 +5,7 @@ dependencies:
     - field.field.paragraph.schedule_item.field_date
     - field.field.paragraph.schedule_item.field_date_range
     - field.field.paragraph.schedule_item.field_description
+    - field.field.paragraph.schedule_item.field_event_type
     - field.field.paragraph.schedule_item.field_location
     - field.field.paragraph.schedule_item.field_title
     - paragraphs.paragraphs_type.schedule_item
@@ -24,11 +25,17 @@ content:
     third_party_settings: {  }
   field_description:
     type: text_textarea
-    weight: 3
+    weight: 4
     region: content
     settings:
       rows: 5
       placeholder: ''
+    third_party_settings: {  }
+  field_event_type:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_location:
     type: string_textfield

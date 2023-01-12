@@ -24,6 +24,7 @@ settings:
       button: button
       heading: heading
       html: html
+      image_with_description: image_with_description
       list_with_items: list_with_items
       view: view
     negate: 0
@@ -34,6 +35,12 @@ settings:
       button:
         weight: 14
         enabled: true
+      gallery:
+        weight: 18
+        enabled: false
+      gallery_item:
+        weight: 19
+        enabled: false
       heading:
         weight: 15
         enabled: true

@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_gallery_type
+    - paragraphs.paragraphs_type.gallery_item
+  module:
+    - options
+id: paragraph.gallery_item.field_gallery_type
+field_name: field_gallery_type
+entity_type: paragraph
+bundle: gallery_item
+label: Type
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

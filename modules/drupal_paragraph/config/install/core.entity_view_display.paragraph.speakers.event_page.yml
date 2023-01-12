@@ -1,0 +1,58 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.event_page
+    - field.field.paragraph.speakers.field_body
+    - field.field.paragraph.speakers.field_hide_content
+    - field.field.paragraph.speakers.field_items
+    - field.field.paragraph.speakers.field_title
+    - paragraphs.paragraphs_type.speakers
+  module:
+    - entity_reference_revisions
+    - layout_builder
+    - text
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: paragraph.speakers.event_page
+targetEntityType: paragraph
+bundle: speakers
+mode: event_page
+content:
+  field_body:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_hide_content:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_items:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:

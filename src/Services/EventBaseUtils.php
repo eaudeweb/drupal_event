@@ -5,9 +5,7 @@ namespace Drupal\drupal_event\Services;
 use Drupal\block_content\Entity\BlockContent;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Render\Element;
 use Drupal\node\Entity\Node;
-use Drupal\node\NodeInterface;
 use Drupal\views\Views;
 
 /**

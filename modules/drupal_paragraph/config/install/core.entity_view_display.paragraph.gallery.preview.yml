@@ -1,0 +1,33 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.gallery.field_body
+    - field.field.paragraph.gallery.field_hide_content
+    - field.field.paragraph.gallery.field_items
+    - field.field.paragraph.gallery.field_title
+    - paragraphs.paragraphs_type.gallery
+  module:
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: paragraph.gallery.preview
+targetEntityType: paragraph
+bundle: gallery
+mode: preview
+content:
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_body: true
+  field_hide_content: true
+  field_items: true

@@ -2,17 +2,27 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.speakers.field_body
     - field.field.paragraph.speakers.field_hide_content
     - field.field.paragraph.speakers.field_items
     - field.field.paragraph.speakers.field_title
     - paragraphs.paragraphs_type.speakers
   module:
     - paragraphs_browser
+    - text
 id: paragraph.speakers.default
 targetEntityType: paragraph
 bundle: speakers
 mode: default
 content:
+  field_body:
+    type: text_textarea
+    weight: 4
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
   field_hide_content:
     type: boolean_checkbox
     weight: 0

@@ -2,17 +2,27 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.schedule.field_body
     - field.field.paragraph.schedule.field_hide_content
     - field.field.paragraph.schedule.field_items
     - field.field.paragraph.schedule.field_title
     - paragraphs.paragraphs_type.schedule
   module:
     - drupal_paragraph
+    - text
 id: paragraph.schedule.default
 targetEntityType: paragraph
 bundle: schedule
 mode: default
 content:
+  field_body:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
   field_hide_content:
     type: boolean_checkbox
     weight: 0

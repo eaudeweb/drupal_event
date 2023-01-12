@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.event_page
+label: 'Event page'
+targetEntityType: paragraph
+cache: true

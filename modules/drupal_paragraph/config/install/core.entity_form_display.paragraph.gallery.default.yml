@@ -1,0 +1,65 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.gallery.field_body
+    - field.field.paragraph.gallery.field_hide_content
+    - field.field.paragraph.gallery.field_items
+    - field.field.paragraph.gallery.field_title
+    - paragraphs.paragraphs_type.gallery
+  module:
+    - drupal_paragraph
+    - text
+id: paragraph.gallery.default
+targetEntityType: paragraph
+bundle: gallery
+mode: default
+content:
+  field_body:
+    type: text_textarea
+    weight: 4
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_hide_content:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_items:
+    type: row_entity_reference_paragraphs
+    weight: 3
+    region: content
+    settings:
+      title: 'Gallery item'
+      title_plural: 'Gallery items'
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: '0'
+      add_mode: paragraphs_browser
+      form_display_mode: default
+      default_paragraph_type: _none
+      features:
+        duplicate: duplicate
+        collapse_edit_all: collapse_edit_all
+        add_above: 0
+      paragraphs_browser: _na
+      modal_width: 80%
+      modal_height: auto
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

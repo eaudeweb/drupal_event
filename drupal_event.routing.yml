@@ -1,0 +1,17 @@
+entity.node.event_page:
+  path: '/node/{node}/{paragraph}'
+  defaults:
+    _controller: '\Drupal\drupal_event\Controller\EventPageController::renderEventPage'
+    _title_callback: '\Drupal\Core\Entity\Controller\EntityController::title'
+  requirements:
+    _entity_access: 'node.view'
+    _custom_access: '\Drupal\drupal_event\Controller\EventPageController::access'
+    node: \d+
+  options:
+    parameters:
+      node:
+        type: entity:node
+        bundle:
+          - event
+      paragraph:
+        type: 'entity:paragraph'

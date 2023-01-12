@@ -2,17 +2,26 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.schedule.field_body
     - field.field.paragraph.schedule.field_hide_content
     - field.field.paragraph.schedule.field_items
     - field.field.paragraph.schedule.field_title
     - paragraphs.paragraphs_type.schedule
   module:
     - entity_reference_revisions
+    - text
 id: paragraph.schedule.default
 targetEntityType: paragraph
 bundle: schedule
 mode: default
 content:
+  field_body:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
   field_hide_content:
     type: boolean
     label: hidden
@@ -40,5 +49,4 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-hidden:
-  search_api_excerpt: true
+hidden: { }

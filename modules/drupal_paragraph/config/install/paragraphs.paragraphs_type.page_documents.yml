@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: page_documents
+label: 'Page Documents'
+icon_uuid: null
+icon_default: null
+description: 'Page paragraph to render related documents for an event as a sub-page with title and rich text using a WYSIWYG editor.'
+behavior_plugins: {  }

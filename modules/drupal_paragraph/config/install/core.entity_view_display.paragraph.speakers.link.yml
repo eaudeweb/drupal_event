@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.link
+    - field.field.paragraph.speakers.field_body
     - field.field.paragraph.speakers.field_hide_content
     - field.field.paragraph.speakers.field_items
     - field.field.paragraph.speakers.field_title
@@ -22,6 +23,6 @@ content:
     weight: 0
     region: content
 hidden:
+  field_body: true
   field_hide_content: true
   field_items: true
-  search_api_excerpt: true

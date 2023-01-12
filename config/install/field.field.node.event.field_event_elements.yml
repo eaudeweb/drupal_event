@@ -20,9 +20,11 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
+      gallery: gallery
       page_html: page_html
       schedule: schedule
       speakers: speakers
+      page_documents: page_documents
     negate: 0
     target_bundles_drag_drop:
       block_content:
@@ -31,11 +33,20 @@ settings:
       button:
         weight: 14
         enabled: false
+      gallery:
+        weight: 18
+        enabled: true
+      gallery_item:
+        weight: 19
+        enabled: false
       heading:
         weight: 15
         enabled: false
       html:
         weight: 16
+        enabled: false
+      image_with_description:
+        weight: 22
         enabled: false
       item:
         weight: 17
@@ -43,6 +54,9 @@ settings:
       list_with_items:
         weight: 18
         enabled: false
+      page_documents:
+        weight: 26
+        enabled: true
       page_html:
         weight: 19
         enabled: true

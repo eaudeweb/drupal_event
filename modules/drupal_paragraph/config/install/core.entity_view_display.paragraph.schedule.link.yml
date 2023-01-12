@@ -1,13 +1,14 @@
+uuid: 3a11a9a3-2109-46af-be8b-7c22261acdad
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.link
+    - field.field.paragraph.schedule.field_body
     - field.field.paragraph.schedule.field_hide_content
     - field.field.paragraph.schedule.field_items
     - field.field.paragraph.schedule.field_title
     - paragraphs.paragraphs_type.schedule
-third_party_settings: { }
 id: paragraph.schedule.link
 targetEntityType: paragraph
 bundle: schedule
@@ -22,6 +23,6 @@ content:
     weight: 0
     region: content
 hidden:
+  field_body: true
   field_hide_content: true
   field_items: true
-  search_api_excerpt: true

@@ -157,7 +157,7 @@ third_party_settings:
             uuid: 5d39c948-88e9-462b-8aa9-326fe8ad6174
             region: blb_region_col_1
             configuration:
-              id: event_sub_pages
+              id: event_separate_sub_pages
               label: 'Event Menu'
               label_display: '0'
               provider: drupal_event

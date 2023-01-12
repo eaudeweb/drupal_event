@@ -2,3 +2,10 @@ services:
   event.utils:
     class: 'Drupal\drupal_event\Services\EventBaseUtils'
     arguments: ['@entity_type.manager', '@entity.repository']
+
+  event.path_processor:
+    class: Drupal\drupal_event\PathProcessor\EventPagesPathProcessor
+    arguments: ['@path_alias.path_processor', '@entity_type.manager', '@path_alias.manager', '@current_route_match']
+    tags:
+      - { name: path_processor_inbound, priority: 50 }
+      - { name: path_processor_outbound, priority: 50 }

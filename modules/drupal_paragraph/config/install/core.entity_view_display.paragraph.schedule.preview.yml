@@ -1,13 +1,14 @@
+uuid: 6b5b8989-4940-499d-93d6-87179d00c054
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.schedule.field_body
     - field.field.paragraph.schedule.field_hide_content
     - field.field.paragraph.schedule.field_items
     - field.field.paragraph.schedule.field_title
     - paragraphs.paragraphs_type.schedule
-third_party_settings: { }
 id: paragraph.schedule.preview
 targetEntityType: paragraph
 bundle: schedule
@@ -22,6 +23,6 @@ content:
     weight: 0
     region: content
 hidden:
+  field_body: true
   field_hide_content: true
   field_items: true
-  search_api_excerpt: true

@@ -1104,7 +1104,7 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: target_id
-          type: file_with_language_formatter
+          type: file_download_formatter
           settings:
             use_description_as_link_text: 1
           group_column: ''
@@ -1773,6 +1773,10 @@ display:
         - 'config:core.entity_view_display.node.event.upcoming_session'
         - 'config:core.entity_view_display.node.page.default'
         - 'config:core.entity_view_display.node.page.teaser'
+        - 'config:core.entity_view_display.node.person.default'
+        - 'config:core.entity_view_display.node.person.focal_point'
+        - 'config:core.entity_view_display.taxonomy_term.countries.flag'
+        - 'config:core.entity_view_display.taxonomy_term.countries.link'
   past_sessions_event:
     id: past_sessions_event
     display_title: 'Past sessions'
@@ -1895,10 +1899,9 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: target_id
-          type: file_with_language_formatter
+          type: file_download_formatter
           settings:
             use_description_as_link_text: 0
-            suppress_language: 0
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -2491,7 +2494,7 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: target_id
-          type: file_with_language_formatter
+          type: file_download_formatter
           settings:
             use_description_as_link_text: 0
           group_column: ''
