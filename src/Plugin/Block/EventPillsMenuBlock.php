@@ -24,7 +24,7 @@ class EventPillsMenuBlock extends EventMenuBlockBase {
     $build = parent::build();
 
     // When Layout builder tried to render the block.
-    if (!$this->node) {
+    if (!$this->node || empty($build)) {
       return $build;
     }
 

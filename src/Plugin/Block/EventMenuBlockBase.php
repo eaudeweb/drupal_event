@@ -114,7 +114,6 @@ abstract class EventMenuBlockBase extends BlockBase implements ContainerFactoryP
         $paragraph = $this->node->get('field_event_elements')->get($delta)->entity;
         // Do not render if user checked "Hide this tab in public event page".
         if ($this->hideParagraph($paragraph)) {
-          unset($build['elements'][$delta]);
           continue;
         }
         $build['elements'][$delta] = $elements[$delta];
