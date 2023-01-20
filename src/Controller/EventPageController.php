@@ -90,7 +90,10 @@ class EventPageController extends ControllerBase implements ContainerInjectionIn
    */
   public function access(AccountInterface $account) {
     $paragraph = $this->routeMatch->getParameter('paragraph');
-    $hide = ($paragraph->hasField('field_hide_content') && !$paragraph->get('field_hide_content')->isEmpty() && $paragraph->get('field_hide_content')->value);
+    $hide = ($paragraph instanceof Paragraph &&
+      $paragraph->hasField('field_hide_content')
+      && !$paragraph->get('field_hide_content')->isEmpty()
+      && $paragraph->get('field_hide_content')->value);
     return AccessResult::allowedIf(
       ($account->hasPermission('access content') && !$hide)
       || $account->hasPermission('access content overview')
