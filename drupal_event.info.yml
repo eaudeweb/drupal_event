@@ -2,7 +2,7 @@ name: EDW Event
 description: Provides a Drupal Event content type with sub-pages to be reused in projects
 package: EDW
 type: module
-core_version_requirement: ^8.9 || ^9.0
+core_version_requirement: ^9.4 || ^10
 dependencies:
   - drupal:layout_builder
   - svg_image_field_media_bundle:svg_image_field_media_bundle
