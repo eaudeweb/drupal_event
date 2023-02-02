@@ -65,10 +65,8 @@ abstract class EventMenuBlockBase extends BlockBase implements ContainerFactoryP
   public function __construct(array $configuration, $pluginId, $pluginDefinition, RouteMatchInterface $routeMatch, EventBaseUtils $eventBaseUtils) {
     parent::__construct($configuration, $pluginId, $pluginDefinition);
     $this->routeMatch = $routeMatch;
-    if (in_array($this->routeMatch->getRouteName(), ['entity.node.canonical', 'entity.node.event_page'])) {
-      $this->node = $this->routeMatch->getParameter('node');
-      $this->paragraph = $this->routeMatch->getParameter('paragraph');
-    }
+    $this->node = $this->routeMatch->getParameter('node');
+    $this->paragraph = $this->routeMatch->getParameter('paragraph');
     $this->eventUtils = $eventBaseUtils;
   }
 
