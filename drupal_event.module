@@ -15,6 +15,9 @@ function drupal_event_theme($existing, $type, $theme, $path) {
     'event_elements_paragraph__preview' => [
       'variables' => ['items' => []],
     ],
+    'event__sub_page__full' => [
+      'variables' => ['items' => []],
+    ],
   ];
 }
 
