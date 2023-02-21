@@ -2,7 +2,7 @@ entity.node.event_page:
   path: '/node/{node}/{paragraph}'
   defaults:
     _controller: '\Drupal\drupal_event\Controller\EventPageController::renderEventPage'
-    _title_callback: '\Drupal\Core\Entity\Controller\EntityController::title'
+    _title_callback: '\Drupal\drupal_event\Controller\EventPageController::title'
   requirements:
     _entity_access: 'node.view'
     _custom_access: '\Drupal\drupal_event\Controller\EventPageController::access'

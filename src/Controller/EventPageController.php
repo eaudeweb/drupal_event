@@ -5,6 +5,7 @@ namespace Drupal\drupal_event\Controller;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\node\Entity\Node;
@@ -74,9 +75,34 @@ class EventPageController extends ControllerBase implements ContainerInjectionIn
    */
   public function renderEventPage(Node $node, Paragraph $paragraph) {
     return [
-      $this->entityTypeManager->getViewBuilder('node')->view($node, 'info'),
-      $this->entityTypeManager->getViewBuilder('paragraph')->view($paragraph, 'event_page')
+      '#theme' => 'event__sub_page__full',
+      '#attributes' => [
+        'class' => ['event--element', 'event--sub-page']
+      ],
+      '#items' => [
+        $this->entityTypeManager->getViewBuilder('node')->view($node, 'info'),
+        $this->entityTypeManager->getViewBuilder('paragraph')->view($paragraph, 'event_page'),
+      ],
     ];
+  }
+
+  /**
+   * Route title callback.
+   *
+   * @param \Drupal\node\Entity\Node $node
+   *   The node.
+   * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
+   *
+   * @return string|null
+   *   The title for the route page.
+   */
+  public function title(Node $node, Paragraph $paragraph) {
+    // Display Abbreviation if the event has the field.
+    if ($node->hasField('field_abbreviation')
+      && !$node->get('field_abbreviation')->isEmpty()) {
+      return $node->get('field_abbreviation')->value;
+    }
+    return $node->label();
   }
 
   /**
