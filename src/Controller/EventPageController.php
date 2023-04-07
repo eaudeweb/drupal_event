@@ -5,7 +5,6 @@ namespace Drupal\drupal_event\Controller;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\node\Entity\Node;
@@ -69,15 +68,18 @@ class EventPageController extends ControllerBase implements ContainerInjectionIn
   }
 
   /**
+   * Render an event page.
+   *
    * @param \Drupal\node\Entity\Node $node
    *   The node type.
    * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
+   *   The paragraph entity.
    */
   public function renderEventPage(Node $node, Paragraph $paragraph) {
     return [
       '#theme' => 'event__sub_page__full',
       '#attributes' => [
-        'class' => ['event--element', 'event--sub-page']
+        'class' => ['event--element', 'event--sub-page'],
       ],
       '#items' => [
         $this->entityTypeManager->getViewBuilder('node')->view($node, 'info'),
@@ -92,6 +94,7 @@ class EventPageController extends ControllerBase implements ContainerInjectionIn
    * @param \Drupal\node\Entity\Node $node
    *   The node.
    * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
+   *   The paragraph entity.
    *
    * @return string|null
    *   The title for the route page.
@@ -113,6 +116,8 @@ class EventPageController extends ControllerBase implements ContainerInjectionIn
    *
    * @return \Drupal\Core\Access\AccessResultInterface
    *   The access result.
+   *
+   * @SuppressWarnings(PHPMD.StaticAccess)
    */
   public function access(AccountInterface $account) {
     $paragraph = $this->routeMatch->getParameter('paragraph');

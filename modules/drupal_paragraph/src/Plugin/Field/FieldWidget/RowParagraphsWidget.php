@@ -411,7 +411,7 @@ class RowParagraphsWidget extends ParagraphsBrowserWidget implements ContainerFa
   }
 
   /**
-   * @inheritdoc
+   * {@inheritdoc}
    */
   public static function getWidgetState(array $parents, $fieldName, FormStateInterface $form_state) {
     // Fix some issues with the diff form save.
@@ -421,12 +421,13 @@ class RowParagraphsWidget extends ParagraphsBrowserWidget implements ContainerFa
   /**
    * Returns the column name where the field should be rendered.
    *
-   * @param $fieldName
+   * @param string $fieldName
+   *   The field name.
    *
    * @return string
    *  The machine name of the column. Default column is the field name.
    */
-  public function getFieldColumn($fieldName) {
+  public function getFieldColumn(string $fieldName) {
     switch ($fieldName) {
       case 'field_location':
       case 'field_title':

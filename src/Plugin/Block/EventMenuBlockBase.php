@@ -5,6 +5,7 @@ namespace Drupal\drupal_event\Plugin\Block;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Routing\RouteMatchInterface;
@@ -16,9 +17,18 @@ use Drupal\drupal_event\Services\EventBaseUtils;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Defines a base block implementation that most event menus plugins will extend.
+ * Defines base block implementation that most event menus plugins will extend.
  */
 abstract class EventMenuBlockBase extends BlockBase implements ContainerFactoryPluginInterface {
+
+  const DISPLAY = [
+    'label' => 'hidden',
+    'type' => 'entity_reference_revisions_entity_view',
+    'settings' => [
+      'view_mode' => 'preview',
+      'link' => '',
+    ],
+  ];
 
   /**
    * The route match.
@@ -40,6 +50,13 @@ abstract class EventMenuBlockBase extends BlockBase implements ContainerFactoryP
    * @var \Drupal\node\Entity\Node
    */
   protected $node = NULL;
+
+  /**
+   * The current node revision.
+   *
+   * @var \Drupal\node\Entity\Node
+   */
+  protected $nodeRevision = NULL;
 
   /**
    * The current paragraph.
@@ -65,9 +82,15 @@ abstract class EventMenuBlockBase extends BlockBase implements ContainerFactoryP
   public function __construct(array $configuration, $pluginId, $pluginDefinition, RouteMatchInterface $routeMatch, EventBaseUtils $eventBaseUtils) {
     parent::__construct($configuration, $pluginId, $pluginDefinition);
     $this->routeMatch = $routeMatch;
-    $this->node = $this->routeMatch->getParameter('node');
-    $this->paragraph = $this->routeMatch->getParameter('paragraph');
     $this->eventUtils = $eventBaseUtils;
+    $this->node = $this->routeMatch->getParameter('node');
+    if ($this->isLatestVersionPage() && !$this->node->isLatestRevision()) {
+      $this->node = $this->eventUtils->getLatestRevision($this->node);
+    }
+    if ($this->isRevisionPage()) {
+      $this->nodeRevision = $this->routeMatch->getParameter('node_revision');
+    }
+    $this->paragraph = $this->routeMatch->getParameter('paragraph');
   }
 
   /**
@@ -96,22 +119,35 @@ abstract class EventMenuBlockBase extends BlockBase implements ContainerFactoryP
       return $build;
     }
 
-    $display = [
-      'label' => 'hidden',
-      'type' => 'entity_reference_revisions_entity_view',
-      'settings' => [
-        'view_mode' => 'preview',
-        'link' => '',
-      ],
-    ];
+    // If user access a node revision.
+    if ($this->nodeRevision) {
+      $build = $this->buildTabs($this->nodeRevision);
+
+      return $build;
+    }
+
+    return $this->buildTabs($this->node);
+  }
+
+  /**
+   * Build a renderable array with tabs.
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *   The entity object.
+   *
+   * @return array
+   *   A render array element.
+   */
+  protected function buildTabs(EntityInterface $entity) {
+    $build = [];
     // Get paragraphs (like Schedule, Speakers, HTML) if exists.
-    if (!$this->node->get('field_event_elements')->isEmpty()) {
-      $elements = $this->node->get('field_event_elements')->view($display);
+    if (!$entity->get('field_event_elements')->isEmpty()) {
+      $elements = $entity->get('field_event_elements')->view(self::DISPLAY);
       foreach (Element::children($elements) as $delta) {
         /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-        $paragraph = $this->node->get('field_event_elements')->get($delta)->entity;
+        $paragraph = $entity->get('field_event_elements')->get($delta)->entity;
         // Do not render if user checked "Hide this tab in public event page".
-        if ($this->hideParagraph($paragraph)) {
+        if ($this->eventUtils->isParagraphHidden($paragraph)) {
           continue;
         }
         $build['elements'][$delta] = $elements[$delta];
@@ -205,38 +241,29 @@ abstract class EventMenuBlockBase extends BlockBase implements ContainerFactoryP
    * @SuppressWarnings(PHPMD.StaticAccess)
    */
   protected function generateRoute(Paragraph $paragraph) {
+    $routeName = 'entity.node.event_page';
+    $routeParameters = [
+      'node' => $this->node->id(),
+      'paragraph' => $paragraph->id(),
+    ];
+    if ($this->isLatestVersionPage()) {
+      $routeName = 'entity.node.event_page.latest_version';
+    }
+    if ($this->isRevisionPage()) {
+      $routeName = 'entity.node.event_page.revision';
+      $routeParameters['node_revision'] = $this->routeMatch->getRawParameter('node_revision');
+    }
     return [
       '#type' => 'link',
       '#title' => $paragraph->get('field_title')->value,
-      '#attributes' => ['class' => [
-        'btn',
-        $this->paragraph instanceof Paragraph && $this->paragraph->id() == $paragraph->id() ? 'btn-primary' : 'btn-outline-primary',
-      ]],
-      '#url' => Url::fromRoute('entity.node.event_page', [
-        'node' => $this->node->id(),
-        'paragraph' => $paragraph->id(),
-      ]),
+      '#attributes' => [
+        'class' => [
+          'btn',
+          $this->paragraph instanceof Paragraph && $this->paragraph->id() == $paragraph->id() ? 'btn-primary' : 'btn-outline-primary',
+        ],
+      ],
+      '#url' => Url::fromRoute($routeName, $routeParameters),
     ];
-  }
-
-  /**
-   * Verify if the paragraph needs to be hidden in the event page.
-   *
-   * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
-   *   The paragraph.
-   *
-   * @return bool
-   *   TRUE if the paragraph needs to be hidden, FALSE otherwise.
-   */
-  protected function hideParagraph(Paragraph $paragraph) {
-    if (!$paragraph->hasField('field_hide_content')) {
-      return FALSE;
-    }
-    if (!$paragraph->get('field_hide_content')->isEmpty()
-      && $paragraph->get('field_hide_content')->value) {
-      return TRUE;
-    }
-    return FALSE;
   }
 
   /**
@@ -249,6 +276,8 @@ abstract class EventMenuBlockBase extends BlockBase implements ContainerFactoryP
 
   /**
    * {@inheritdoc}
+   *
+   * @SuppressWarnings(PHPMD.StaticAccess)
    */
   protected function blockAccess(AccountInterface $account) {
     return AccessResult::allowedIf(
@@ -261,7 +290,31 @@ abstract class EventMenuBlockBase extends BlockBase implements ContainerFactoryP
    * {@inheritdoc}
    */
   protected function isEventHomepage() {
-    return $this->routeMatch->getRouteName() == 'entity.node.canonical';
+    return in_array($this->routeMatch->getRouteName(), [
+      'entity.node.canonical',
+      'entity.node.latest_version',
+      'entity.node.revision',
+    ]);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function isLatestVersionPage() {
+    return in_array($this->routeMatch->getRouteName(), [
+      'entity.node.latest_version',
+      'entity.node.event_page.latest_version',
+    ]);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function isRevisionPage() {
+    return in_array($this->routeMatch->getRouteName(), [
+      'entity.node.revision',
+      'entity.node.event_page.revision',
+    ]);
   }
 
 }

@@ -28,6 +28,16 @@ class EventPillsMenuBlock extends EventMenuBlockBase {
       return $build;
     }
 
+    $routeName = 'entity.node.canonical';
+    $routeParameters = ['node' => $this->node->id()];
+    if ($this->isLatestVersionPage()) {
+      $routeName = 'entity.node.latest_version';
+    }
+    if ($this->isRevisionPage()) {
+      $routeName = 'entity.node.revision';
+      $routeParameters['node_revision'] = $this->routeMatch->getRawParameter('node_revision');
+    }
+
     // Add a button for Event homepage.
     array_unshift($build['elements'], [
       'content' => [
@@ -35,11 +45,13 @@ class EventPillsMenuBlock extends EventMenuBlockBase {
         '#items' => [
           '#type' => 'link',
           '#title' => $this->t('Event information'),
-          '#attributes' => ['class' => [
-            'btn',
-            $this->isEventHomepage() ? 'btn-primary' : 'btn-outline-primary',
-          ]],
-          '#url' => Url::fromRoute('entity.node.canonical', ['node' => $this->node->id()]),
+          '#attributes' => [
+            'class' => [
+              'btn',
+              $this->isEventHomepage() ? 'btn-primary' : 'btn-outline-primary',
+            ],
+          ],
+          '#url' => Url::fromRoute($routeName, $routeParameters),
         ],
       ],
     ]);

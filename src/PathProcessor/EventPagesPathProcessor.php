@@ -27,7 +27,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class EventPagesPathProcessor implements InboundPathProcessorInterface, OutboundPathProcessorInterface {
 
-  CONST PATTERN = '/[^a-zA-Z0-9\/]+/';
+  const PATTERN = '/[^a-zA-Z0-9\/]+/';
   /**
    * An alias manager for looking up the system path.
    *

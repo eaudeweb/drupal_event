@@ -3,9 +3,11 @@
 namespace Drupal\drupal_event\Services;
 
 use Drupal\block_content\Entity\BlockContent;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\node\Entity\Node;
+use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\views\Views;
 
 /**
@@ -135,6 +137,66 @@ class EventBaseUtils {
       ->condition('field_events', $nid, 'IN')
       ->condition('status', 1)
       ->execute();
+  }
+
+  /**
+   * Verify if the paragraph needs to be hidden in the event page.
+   *
+   * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
+   *   The paragraph.
+   *
+   * @return bool
+   *   TRUE if the paragraph needs to be hidden, FALSE otherwise.
+   */
+  public function isParagraphHidden(Paragraph $paragraph) {
+    if (!$paragraph->hasField('field_hide_content')) {
+      return FALSE;
+    }
+    if (!$paragraph->get('field_hide_content')->isEmpty()
+      && $paragraph->get('field_hide_content')->value) {
+      return TRUE;
+    }
+    return FALSE;
+  }
+
+  /**
+   * Returns the latest revision identifier for an entity.
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *   The entity object.
+   *
+   * @return \Drupal\Core\Entity\EntityInterface|null
+   *   The latest entity revision identifier.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   */
+  public function getLatestRevision(EntityInterface $entity) {
+    $entityTypeId = $entity->getEntityTypeId();
+    if (!$entity->isLatestRevision()) {
+      $rid = $this->entityTypeManager->getStorage($entityTypeId)->getLatestRevisionId($entity->id());
+
+      return $this->loadRevision($rid, $entityTypeId);
+    }
+
+    return $entity;
+  }
+
+  /**
+   * Loads a specific entity revision.
+   *
+   * @param int|string $revisionId
+   *   The revision ID.
+   * @param string $entityTypeId
+   *   The entity type ID.
+   *
+   * @return \Drupal\Core\Entity\EntityInterface|null
+   *   The specified entity revision or NULL if not found.
+   */
+  public function loadRevision($revisionId, $entityTypeId = 'node') {
+    $revisions = $this->entityTypeManager->getStorage($entityTypeId)->loadMultipleRevisions([$revisionId]);
+
+    return $revisions[$revisionId] ?? NULL;
   }
 
 }
