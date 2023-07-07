@@ -11,9 +11,9 @@ use Drupal\Core\Render\Element;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
+use Drupal\drupal_event\Services\EventBaseUtils;
 use Drupal\node\Entity\Node;
 use Drupal\paragraphs\Entity\Paragraph;
-use Drupal\drupal_event\Services\EventBaseUtils;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**

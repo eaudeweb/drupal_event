@@ -7,6 +7,7 @@ use Drupal\Core\PathProcessor\InboundPathProcessorInterface;
 use Drupal\Core\PathProcessor\OutboundPathProcessorInterface;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\path_alias\AliasManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -17,7 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
  * that rely on canonical URLs work with URL aliases.
  *
  * E.g. we defined a route for the /node/{node}/{paragraph} path. This path will
- * not work on /node-alias/paragraph-field-title by default. This path processor
+ * not work on /node-alias/paragraph-field-title-id by default. This path processor
  * will strip components from the end of the URL until the remaining path matches
  * an URL alias.
  *
@@ -27,7 +28,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class EventPagesPathProcessor implements InboundPathProcessorInterface, OutboundPathProcessorInterface {
 
-  const PATTERN = '/[^a-zA-Z0-9\/]+/';
   /**
    * An alias manager for looking up the system path.
    *
@@ -89,8 +89,10 @@ class EventPagesPathProcessor implements InboundPathProcessorInterface, Outbound
       // Load event elements.
       $eventPages = $this->entityTypeManager->getStorage('node')->load($nid)->get('field_event_elements')->referencedEntities();
       foreach ($eventPages as $eventPage) {
-        $label = $eventPage->get('field_title')->value;
-        $label = $this->fromTitleToStringUrl($label);
+        if ($eventPage->get('field_title_id')->isEmpty()) {
+          continue;
+        }
+        $label = $eventPage->get('field_title_id')->value;
         if ($label == $matches[2]) {
           $pid = $eventPage->id();
           return $path . DIRECTORY_SEPARATOR . $pid;
@@ -107,38 +109,44 @@ class EventPagesPathProcessor implements InboundPathProcessorInterface, Outbound
    * @SuppressWarnings(PHPMD.CamelCaseVariableName)
    */
   public function processOutbound($path, &$options = [], Request $request = NULL, BubbleableMetadata $bubbleable_metadata = NULL) {
-    if ($this->routeMatch->getRouteName() != 'entity.node.event_page') {
-      return $path;
+    if ($this->routeMatch->getRouteName() == 'entity.node.canonical') {
+      $node = $this->routeMatch->getParameter('node');
+      if ($node->bundle() == 'event' && $node->hasField('field_event_elements') && !$node->get('field_event_elements')->isEmpty()) {
+        $this->processOutboundPath($path, $options, $bubbleable_metadata);
+      }
     }
+    if ($this->routeMatch->getRouteName() == 'entity.node.event_page') {
+      $this->processOutboundPath($path, $options, $bubbleable_metadata);
+    }
+    return $path;
+  }
+
+  /**
+   * {@inheritdoc}
+   *
+   * @SuppressWarnings(PHPMD.CamelCaseParameterName)
+   * @SuppressWarnings(PHPMD.CamelCaseVariableName)
+   */
+  protected function processOutboundPath(&$path, $options, BubbleableMetadata &$bubbleable_metadata = NULL) {
     // Rewrite /node/nid/pid to /event/name/paragraph-title.
     if (preg_match('!^\/node\/(\d*)\/(\d*)!', $path, $matches)) {
       $nid = $matches[1];
       $pid = $matches[2];
       $node = $this->entityTypeManager->getStorage('node')->load($nid);
       $paragraph = $this->entityTypeManager->getStorage('paragraph')->load($pid);
+      if (!$paragraph instanceof Paragraph) {
+        return;
+      }
       $alias = $this->aliasManager->getAliasByPath('/node/' . $node->id());
-      $label = $paragraph->get('field_title')->value;
-      $label = $this->fromTitleToStringUrl($label);
+      if ($paragraph->get('field_title_id')->isEmpty()) {
+        return;
+      }
+      $label = $paragraph->get('field_title_id')->value;
       $path = $alias . DIRECTORY_SEPARATOR . $label;
       if ($bubbleable_metadata) {
         $bubbleable_metadata->addCacheTags($node->getCacheTags());
       }
     }
-    return $path;
-  }
-
-  /**
-   * Transform the title into a string used for URL.
-   *
-   * @param string $title
-   *   The title of the paragraph.
-   *
-   * @return string
-   *   The title as a string for URL.
-   */
-  protected function fromTitleToStringUrl(string $title) {
-    $string = strtolower($title);
-    return preg_replace(self::PATTERN, '-', $string);
   }
 
 }

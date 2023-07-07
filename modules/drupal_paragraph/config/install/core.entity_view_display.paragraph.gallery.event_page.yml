@@ -8,6 +8,7 @@ dependencies:
     - field.field.paragraph.gallery.field_hide_content
     - field.field.paragraph.gallery.field_items
     - field.field.paragraph.gallery.field_title
+    - field.field.paragraph.gallery.field_title_id
     - paragraphs.paragraphs_type.gallery
     - views.view.index_gallery
   module:
@@ -202,3 +203,4 @@ content:
 hidden:
   field_body: true
   field_hide_content: true
+  field_title_id: true

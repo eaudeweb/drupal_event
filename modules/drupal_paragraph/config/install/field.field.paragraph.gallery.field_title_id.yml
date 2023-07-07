@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title_id
+    - paragraphs.paragraphs_type.gallery
+id: paragraph.gallery.field_title_id
+field_name: field_title_id
+entity_type: paragraph
+bundle: gallery
+label: 'Title ID'
+description: 'Field automated populate with Title preprocessed to be used in URL.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

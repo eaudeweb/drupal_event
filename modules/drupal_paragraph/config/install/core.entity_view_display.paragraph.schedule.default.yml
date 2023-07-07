@@ -6,6 +6,7 @@ dependencies:
     - field.field.paragraph.schedule.field_hide_content
     - field.field.paragraph.schedule.field_items
     - field.field.paragraph.schedule.field_title
+    - field.field.paragraph.schedule.field_title_id
     - paragraphs.paragraphs_type.schedule
   module:
     - entity_reference_revisions
@@ -49,4 +50,5 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-hidden: { }
+hidden:
+  field_title_id: true

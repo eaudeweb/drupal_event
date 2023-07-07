@@ -4,6 +4,7 @@ package: EDW
 type: module
 core_version_requirement: ^8.9 || ^9.0
 dependencies:
+  - drupal:pathauto
   - entity_browser:entity_browser
   - paragraphs_browser:paragraphs_browser
   - block_field:block_field

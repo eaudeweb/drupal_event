@@ -7,6 +7,7 @@ dependencies:
     - field.field.paragraph.page_html.field_hide_content
     - field.field.paragraph.page_html.field_icon
     - field.field.paragraph.page_html.field_title
+    - field.field.paragraph.page_html.field_title_id
     - paragraphs.paragraphs_type.page_html
   module:
     - layout_builder
@@ -37,5 +38,6 @@ content:
     weight: 1
     region: content
 hidden:
+  field_title_id: true
   field_content: true
   field_hide_content: true

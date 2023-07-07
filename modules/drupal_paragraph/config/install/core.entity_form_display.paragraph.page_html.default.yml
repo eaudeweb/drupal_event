@@ -6,6 +6,7 @@ dependencies:
     - field.field.paragraph.page_html.field_hide_content
     - field.field.paragraph.page_html.field_icon
     - field.field.paragraph.page_html.field_title
+    - field.field.paragraph.page_html.field_title_id
     - paragraphs.paragraphs_type.page_html
   module:
     - media_library
@@ -54,4 +55,5 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_title_id: true
   status: true

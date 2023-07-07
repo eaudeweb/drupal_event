@@ -8,6 +8,7 @@ dependencies:
     - field.field.paragraph.schedule.field_hide_content
     - field.field.paragraph.schedule.field_items
     - field.field.paragraph.schedule.field_title
+    - field.field.paragraph.schedule.field_title_id
     - paragraphs.paragraphs_type.schedule
 id: paragraph.schedule.preview
 targetEntityType: paragraph
@@ -24,5 +25,6 @@ content:
     region: content
 hidden:
   field_body: true
+  field_title_id: true
   field_hide_content: true
   field_items: true

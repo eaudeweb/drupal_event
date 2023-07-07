@@ -5,6 +5,7 @@ dependencies:
     - field.field.paragraph.page_documents.field_body
     - field.field.paragraph.page_documents.field_hide_content
     - field.field.paragraph.page_documents.field_title
+    - field.field.paragraph.page_documents.field_title_id
     - paragraphs.paragraphs_type.page_documents
   module:
     - text
@@ -30,3 +31,4 @@ content:
     region: content
 hidden:
   field_hide_content: true
+  field_title_id: true

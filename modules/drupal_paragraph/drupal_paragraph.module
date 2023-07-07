@@ -111,4 +111,9 @@ function drupal_paragraph_paragraph_presave(Paragraph $entity) {
       $entity->set('field_date', $date);
     }
   }
+  if ($entity->hasField('field_title_id') && $entity->hasField('field_title')) {
+    $title = $entity->get('field_title')->value;
+    $output = \Drupal::service('pathauto.alias_cleaner')->cleanString($title);
+    $entity->set('field_title_id', $output);
+  }
 }
