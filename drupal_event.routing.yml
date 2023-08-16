@@ -8,6 +8,7 @@ entity.node.event_page:
     _custom_access: '\Drupal\drupal_event\Controller\EventPageController::access'
     node: \d+
   options:
+    no_cache: 'TRUE'
     parameters:
       node:
         type: entity:node

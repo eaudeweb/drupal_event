@@ -7,9 +7,11 @@ use Drupal\Core\PathProcessor\InboundPathProcessorInterface;
 use Drupal\Core\PathProcessor\OutboundPathProcessorInterface;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\node\Entity\Node;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\path_alias\AliasManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Route;
 
 /**
  * Processes the inbound/outbound path using path alias lookups.
@@ -86,8 +88,12 @@ class EventPagesPathProcessor implements InboundPathProcessorInterface, Outbound
       $alias = '/' . implode('/', $pathArray);
       $path = $this->aliasManager->getPathByAlias($alias);
       $nid = str_replace('/node/', '', $path);
+      $node = $this->entityTypeManager->getStorage('node')->load($nid);
+      if (!$node instanceof Node) {
+        return $alias;
+      }
       // Load event elements.
-      $eventPages = $this->entityTypeManager->getStorage('node')->load($nid)->get('field_event_elements')->referencedEntities();
+      $eventPages = $node->get('field_event_elements')->referencedEntities();
       foreach ($eventPages as $eventPage) {
         if ($eventPage->get('field_title_id')->isEmpty()) {
           continue;
@@ -109,13 +115,16 @@ class EventPagesPathProcessor implements InboundPathProcessorInterface, Outbound
    * @SuppressWarnings(PHPMD.CamelCaseVariableName)
    */
   public function processOutbound($path, &$options = [], Request $request = NULL, BubbleableMetadata $bubbleable_metadata = NULL) {
-    if ($this->routeMatch->getRouteName() == 'entity.node.canonical') {
-      $node = $this->routeMatch->getParameter('node');
-      if ($node->bundle() == 'event' && $node->hasField('field_event_elements') && !$node->get('field_event_elements')->isEmpty()) {
-        $this->processOutboundPath($path, $options, $bubbleable_metadata);
-      }
+    if (!isset($options['route'])) {
+      return $path;
     }
-    if ($this->routeMatch->getRouteName() == 'entity.node.event_page') {
+    /** @var Route $route */
+    $route = $options['route'];
+    if ($route->hasOption('parameters')) {
+      $parameters = $route->getOption('parameters');
+      if (!isset($parameters['paragraph'])) {
+        return $path;
+      }
       $this->processOutboundPath($path, $options, $bubbleable_metadata);
     }
     return $path;
@@ -133,6 +142,9 @@ class EventPagesPathProcessor implements InboundPathProcessorInterface, Outbound
       $nid = $matches[1];
       $pid = $matches[2];
       $node = $this->entityTypeManager->getStorage('node')->load($nid);
+      if (!$node instanceof Node) {
+        return;
+      }
       $paragraph = $this->entityTypeManager->getStorage('paragraph')->load($pid);
       if (!$paragraph instanceof Paragraph) {
         return;
