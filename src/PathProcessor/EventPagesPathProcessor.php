@@ -86,11 +86,11 @@ class EventPagesPathProcessor implements InboundPathProcessorInterface, Outbound
       $pathArray = explode('/', ltrim($path, '/'));
       array_splice($pathArray, 2);
       $alias = '/' . implode('/', $pathArray);
-      $path = $this->aliasManager->getPathByAlias($alias);
-      $nid = str_replace('/node/', '', $path);
+      $npath = $this->aliasManager->getPathByAlias($alias);
+      $nid = str_replace('/node/', '', $npath);
       $node = $this->entityTypeManager->getStorage('node')->load($nid);
       if (!$node instanceof Node) {
-        return $alias;
+        return $path;
       }
       // Load event elements.
       $eventPages = $node->get('field_event_elements')->referencedEntities();
@@ -101,7 +101,7 @@ class EventPagesPathProcessor implements InboundPathProcessorInterface, Outbound
         $label = $eventPage->get('field_title_id')->value;
         if ($label == $matches[2]) {
           $pid = $eventPage->id();
-          return $path . DIRECTORY_SEPARATOR . $pid;
+          return $npath . DIRECTORY_SEPARATOR . $pid;
         }
       }
     }
