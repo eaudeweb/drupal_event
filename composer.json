@@ -21,7 +21,7 @@
     ],
     "require": {
         "drupal/svg_image_field": "^2.1",
-        "drupal/svg_image": "^1.16",
+        "drupal/svg_image": "^1.16 || ^3.0",
         "drupal/link_class": "^2.0",
         "drupal/better_exposed_filters": "^6.0",
         "drupal/paragraphs_browser": "^1.0",
