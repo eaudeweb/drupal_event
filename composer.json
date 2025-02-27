@@ -32,7 +32,6 @@
         "composer-exit-on-patch-failure": true,
         "patches": {
             "drupal/core": {
-                "#2457999 - Cannot use relationship for rendered entity on Views": "https://www.drupal.org/files/issues/2023-01-04/2457999-9.5.x-309.patch",
                 "#2429699 - Add Views EntityReference filter to be available for all entity reference fields":"https://git.drupalcode.org/project/drupal/-/merge_requests/3086.patch"
             },
             "drupal/entity_reference_revisions": {
